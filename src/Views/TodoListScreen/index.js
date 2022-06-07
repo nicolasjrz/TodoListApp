@@ -6,10 +6,11 @@ import {
   TextInput,
   Button,
   StyleSheet,
+  FlatList,
 } from 'react-native';
 
 const TodoListScreen = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoListDat, setTodoListDat] = useState([]);
   const [todoText, setTodoText] = useState('');
 
   const handleChangeText = text => {
@@ -18,12 +19,16 @@ const TodoListScreen = () => {
 
   const handleButtonPress = () => {
     if (todoText.trim().length > 0) {
-      setTodoList(value => value.concat(todoText));
+      setTodoListDat(value => value.concat({text: todoText}));
       setTodoText('');
     }
   };
+
+  const handleRenderListItem = ({item}) => {
+    return <Text>{item.text}</Text>;
+  };
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View>
         <TextInput
           style={styles.textInput}
@@ -34,7 +39,14 @@ const TodoListScreen = () => {
         />
         <Button title="Enter" onPress={handleButtonPress} />
       </View>
-    </ScrollView>
+      <View>
+        <FlatList
+          data={todoListDat}
+          renderItem={handleRenderListItem}
+          keyExtractor={item => item.text}
+        />
+      </View>
+    </View>
   );
 };
 
