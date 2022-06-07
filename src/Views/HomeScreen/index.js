@@ -1,26 +1,45 @@
 import React from 'react';
-import {StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {StyleSheet, Text, useColorScheme, View, Image} from 'react-native';
 
 const HomeScreen = () => {
-  return <Text>Home</Text>;
+  return (
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Image
+          style={styles.img}
+          source={{
+            uri: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
+          }}
+        />
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.title}>Welcome back, User!</Text>
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {flex: 1},
+  headerContainer: {
+    backgroundColor: '#63a4ff',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingLeft: 12,
+    paddingRight: 12,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  img: {
+    width: 30,
+    height: 30,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  highlight: {
-    fontWeight: '700',
+  title: {
+    fontSize: 30,
   },
 });
 
