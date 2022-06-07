@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   View,
@@ -9,6 +9,19 @@ import {
 } from 'react-native';
 
 const TodoListScreen = () => {
+  const [todoList, setTodoList] = useState([]);
+  const [todoText, setTodoText] = useState('');
+
+  const handleChangeText = text => {
+    setTodoText(text);
+  };
+
+  const handleButtonPress = () => {
+    if (todoText.trim().length > 0) {
+      setTodoList(value => value.concat(todoText));
+      setTodoText('');
+    }
+  };
   return (
     <ScrollView style={styles.container}>
       <View>
@@ -16,8 +29,10 @@ const TodoListScreen = () => {
           style={styles.textInput}
           placeholder="escribe tu palabra"
           placeholderTextColor="#c4c4c4"
+          value={todoText}
+          onChangeText={handleChangeText}
         />
-        <Button title="Enter" />
+        <Button title="Enter" onPress={handleButtonPress} />
       </View>
     </ScrollView>
   );
